@@ -17,6 +17,9 @@ namespace Library_Database
         string libraryName;
 
         public string LibraryName { get => libraryName; set => libraryName = value; }
+        internal List<Book> BookList { get => bookList; set => bookList = value; }
+        internal List<Person> WomenList { get => womenList; set => womenList = value; }
+        internal List<Person> MenList { get => menList; set => menList = value; }
 
         public Library(string libName)
         {
@@ -64,10 +67,6 @@ namespace Library_Database
             while (womenList.Count < NumberOfWomen)
             {
                 womenList.Add(GetRandomWoman());
-            }
-            foreach(Person i in menList)
-            {
-                Console.WriteLine(i.Name);
             }
         }
         private Person GetRandomMan()

@@ -35,6 +35,10 @@ namespace Library_Database
                     libraryList.Add(new Library(LibraryNames[i]));
                     libraryList[i].GeneratePeopleData();
                     libraryList[i].GenerateBookData(BookNames);
+                    Database database = new Database();
+                    int libraryID = database.AddLibraryToDatabase(libraryList[i]);
+                    database.AddBooksToDataBase(libraryList[i], libraryID);
+                    database.AddUsersToDataBase(libraryList[i]);
                 }
             }
         }
