@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library_Database
 {
@@ -46,6 +43,7 @@ namespace Library_Database
             {
                 int authorsNum = random.Next(1, 3);
                 List<Person> authors = new List<Person>();
+                Console.Write("Book name: " + BookNames[i] + " "  );
                 for (int author = 0; author < authorsNum; author++)
                 {
                     if (random.Next(0, 2) == 0) // Generate Man

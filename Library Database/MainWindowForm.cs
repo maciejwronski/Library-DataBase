@@ -37,7 +37,9 @@ namespace Library_Database
                     libraryList[i].GenerateBookData(BookNames);
                     Database database = new Database();
                     int libraryID = database.AddLibraryToDatabase(libraryList[i]);
-                    database.AddBooksToDataBase(libraryList[i], libraryID);
+                    int[] booksIDs = database.AddBooksToDataBase(libraryList[i], libraryID).ToArray();
+                    int[] authorsIDS = database.AddAuthorsToBooks(libraryList[i]).ToArray();
+                    database.CreateConnectionsBetweenAuthorsAndBooks(libraryList[i], booksIDs, authorsIDS);
                     database.AddUsersToDataBase(libraryList[i]);
                 }
             }
