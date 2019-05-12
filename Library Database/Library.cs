@@ -5,7 +5,7 @@ namespace Library_Database
 {
     class Library
     {
-        public const int maxPeople = 1000;
+        public const int maxPeople = 100000;
         List<Person> menList;
         List<Person> womenList;
         List<Book> bookList;
@@ -33,13 +33,15 @@ namespace Library_Database
             Random random = new Random();
             return random.Next(maxPeople);
         }
-        public void GenerateBookData(string[] BookNames)
+        public void GenerateBookData(string[] BookNames, int nextPortion, int maxCount)
         {
+            int start = (BookNames.Length * nextPortion / maxCount);
+            int end = (BookNames.Length * (nextPortion+1) / maxCount);
             int minimumPageCount = 100;
             int maximumPageCount = 2000;
             int minimumYear = 1901;
             int maximumYear = 2019;
-            for (int i = 0; i < BookNames.Length; i++)
+            for (int i = start; i < end; i++)
             {
                 int authorsNum = random.Next(1, 3);
                 List<Person> authors = new List<Person>();
@@ -51,8 +53,10 @@ namespace Library_Database
                     else // Generate Woman
                         authors.Add(GetRandomWoman());
                 }
-                bookList.Add(new Book(BookNames[i], authors, random.Next(minimumPageCount, maximumPageCount), random.Next(minimumYear, maximumYear)));
+                bookList.Add(new Book(BookNames[i], authors, random.Next(minimumPageCount, maximumPageCount), 
+                    random.Next(minimumYear, maximumYear)));
             }
+            Console.WriteLine(nextPortion + " Lib generated");
         }
         public void GeneratePeopleData()
         {
@@ -61,11 +65,14 @@ namespace Library_Database
             while (menList.Count < NumberOfMen)
             {
                 menList.Add(GetRandomMan());
+                Console.WriteLine("Loading mans: " + MenList.Count);
             }
             while (womenList.Count < NumberOfWomen)
             {
                 womenList.Add(GetRandomWoman());
+                Console.WriteLine("Loading womans: " + WomenList.Count);
             }
+            Console.WriteLine("People Data Generated! Total: " + womenList.Count + MenList.Count);
         }
         private Person GetRandomMan()
         {

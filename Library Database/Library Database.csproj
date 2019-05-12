@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Book.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="DatabaseAdmin.cs" />
+    <Compile Include="Librarian.cs" />
     <Compile Include="Library.cs" />
     <Compile Include="MainWindowForm.cs">
       <SubType>Form</SubType>
@@ -64,6 +67,7 @@
     <Compile Include="PeselGenerator\PeselValidator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
     <EmbeddedResource Include="MainWindowForm.resx">
       <DependentUpon>MainWindowForm.cs</DependentUpon>
     </EmbeddedResource>
