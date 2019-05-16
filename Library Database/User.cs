@@ -7,18 +7,20 @@ using System.Threading;
 using Oracle;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
+
 namespace Library_Database
 {
     class User
     {
         protected string cs = @"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)
             (HOST=dbserver.mif.pg.gda.pl)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)
-            (SERVICE_NAME=ORACLEMIF)));User Id=S161307_S;Password=q5SAr;";
+            (SERVICE_NAME=ORACLEMIF)));User Id=S161307_S;Password=;";
         protected OracleConnection oraconn;
         protected Thread userThread;
+        protected OracleTransaction tran;
         public User()
         {
-            ConnectToDatabase();
+            oraconn = new OracleConnection(cs);
         }
         ~User()
         {
@@ -27,7 +29,13 @@ namespace Library_Database
         public virtual void DisconnectFromDatabase()
         {
             oraconn.Close();
-            userThread.Join();
+            
+        }
+        public virtual void RandomlyLeaveConnectionOpen(int min, int max)
+        {
+            Random rand = new Random();
+            int time = rand.Next(min, max);
+            Thread.Sleep(time);
         }
         public virtual void LoseConnectionWithDatabase(float timeToLoseConnection = 0, bool tryToReconnect = true)
         {
@@ -41,31 +49,14 @@ namespace Library_Database
         public virtual void TryToReconnect(int numberOfTries = 3)
         {
             int tempTries = numberOfTries;
-            while(oraconn.State == ConnectionState.Closed && numberOfTries > 0)
+            while (oraconn.State == ConnectionState.Closed && numberOfTries > 0)
             {
                 ConnectToDatabase();
             }
         }
         public virtual void ConnectToDatabase()
         {
-           oraconn = new OracleConnection(cs);
-           oraconn.Open();
-        }
-        public virtual void DeleteCell()
-        {
-
-        }
-        public virtual void AddCell()
-        {
-
-        }
-        public virtual void UpdateCell()
-        {
-
-        }
-        public virtual void CheckCellValue()
-        {
-
+            oraconn.Open();
         }
     }
 }

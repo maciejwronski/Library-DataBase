@@ -45,7 +45,7 @@ namespace Library_Database
                     Console.WriteLine("Added books to database! " + i);
                     int[] authorsIDS = database.AddAuthorsToBooks(libraryList[i]).ToArray();
                     Console.WriteLine("Added authors to database! " + i);
-                    database.CreateConnectionsBetweenAuthorsAndBooks(libraryList[i], booksIDs, authorsIDS);
+                  //  database.CreateConnectionsBetweenAuthorsAndBooks(libraryList[i], booksIDs, authorsIDS);
                     Console.WriteLine("Added connections to database! " + i);
                     database.AddUsersToDataBase(libraryList[i]);
                     Console.WriteLine("Added  to database! " + i);

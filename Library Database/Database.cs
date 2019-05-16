@@ -12,7 +12,7 @@ namespace Library_Database
     {
         string cs = @"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)
             (HOST=dbserver.mif.pg.gda.pl)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)
-            (SERVICE_NAME=ORACLEMIF)));User Id=S161307_S;Password=q5SAr;";
+            (SERVICE_NAME=ORACLEMIF)));User Id=S161307_S;Password=;";
         public Int32 AddLibraryToDatabase(Library library)
         {
             OracleConnection oraconn = new OracleConnection(cs);

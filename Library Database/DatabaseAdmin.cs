@@ -8,13 +8,9 @@ namespace Library_Database
 {
     class DatabaseAdmin : User
     {
-        public DatabaseAdmin()
+        public DatabaseAdmin() : base()
         {
-            base.ConnectToDatabase();
-        }
-        ~DatabaseAdmin()
-        {
-            base.DisconnectFromDatabase();
+
         }
     }
 }
